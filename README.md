@@ -1,4 +1,4 @@
-# @tourgasm/accent-theme
+# @razzu/accent-theme
 
 A React hook and provider for dynamic accent color theming. Perfect for adding customizable color themes to your React applications.
 
@@ -15,11 +15,11 @@ A React hook and provider for dynamic accent color theming. Perfect for adding c
 ## Installation
 
 ```bash
-npm install @tourgasm/accent-theme
+npm install @razzu/accent-theme
 # or
-yarn add @tourgasm/accent-theme
+yarn add @razzu/accent-theme
 # or
-pnpm add @tourgasm/accent-theme
+pnpm add @razzu/accent-theme
 ```
 
 ## Quick Start
@@ -27,7 +27,7 @@ pnpm add @tourgasm/accent-theme
 ### 1. Wrap your app with the provider
 
 ```tsx
-import { AccentThemeProvider } from '@tourgasm/accent-theme';
+import { AccentThemeProvider } from '@razzu/accent-theme';
 
 function App() {
   return (
@@ -41,7 +41,7 @@ function App() {
 ### 2. Use the hook in your components
 
 ```tsx
-import { useAccentTheme, useAccentColor } from '@tourgasm/accent-theme';
+import { useAccentTheme, useAccentColor } from '@razzu/accent-theme';
 
 function MyComponent() {
   const { accentColor, setAccentColor } = useAccentTheme();
@@ -61,7 +61,7 @@ function MyComponent() {
 ### 3. Use the built-in color picker
 
 ```tsx
-import { AccentColorPicker } from '@tourgasm/accent-theme';
+import { AccentColorPicker } from '@razzu/accent-theme';
 
 function Settings() {
   return (
@@ -87,7 +87,7 @@ function Settings() {
 ### Custom Colors
 
 ```tsx
-import { AccentThemeProvider } from '@tourgasm/accent-theme';
+import { AccentThemeProvider } from '@razzu/accent-theme';
 
 const customColors = {
   coral: {
@@ -198,4 +198,4 @@ module.exports = {
 
 ## License
 
-MIT © Tourgasm
+MIT © razzu

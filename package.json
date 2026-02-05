@@ -1,6 +1,6 @@
 {
   "name": "@razzusharma/accent-theme",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Zero-config dynamic accent color theming for React apps - truly plug and play!",
   "main": "dist/index.js",
   "module": "dist/index.mjs",

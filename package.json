@@ -1,11 +1,13 @@
 {
   "name": "@razzusharma/accent-theme",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Dynamic accent color theming for React apps",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build": "tsup",
     "dev": "tsup --watch",

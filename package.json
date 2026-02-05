@@ -1,13 +1,11 @@
 {
-  "name": "@raju-sharma/accent-theme",
+  "name": "@razzusharma/accent-theme",
   "version": "1.0.0",
   "description": "Dynamic accent color theming for React apps",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
-  "files": [
-    "dist"
-  ],
+  "files": ["dist"],
   "scripts": {
     "build": "tsup",
     "dev": "tsup --watch",
@@ -24,11 +22,11 @@
     "tailwind",
     "css-variables"
   ],
-  "author": "Raju Sharma Dahal razzu236@gmail.com",
+  "author": "Raju Sharma Dahal <razzu236@gmail.com>",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/razzuSharma/accent-theme.git"
+    "url": "git+https://github.com/razzuSharma/accent-theme.git"
   },
   "bugs": {
     "url": "https://github.com/razzuSharma/accent-theme/issues"

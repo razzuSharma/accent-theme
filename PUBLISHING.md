@@ -37,7 +37,7 @@ Edit `package.json` and change the name:
 
 ```json
 {
-  "name": "@yourusername/accent-theme",
+  "name": "@razzusharma/accent-theme",
   "version": "1.0.0",
   ...
 }
@@ -67,7 +67,7 @@ cd /tmp
 mkdir test-accent-theme
 cd test-accent-theme
 npm init -y
-npm install /path/to/tour-gasm/packages/accent-theme
+npm install /path/to/accent-theme
 ```
 
 ### 5. Publish to npm
@@ -87,7 +87,7 @@ npm publish
 ### 6. Verify Installation
 
 ```bash
-npm info @yourusername/accent-theme
+npm info @razzusharma/accent-theme
 ```
 
 ## 💻 Using in Your Projects
@@ -95,17 +95,17 @@ npm info @yourusername/accent-theme
 ### Installation
 
 ```bash
-npm install @yourusername/accent-theme
+npm install @razzusharma/accent-theme
 # or
-yarn add @yourusername/accent-theme
+yarn add @razzusharma/accent-theme
 # or
-pnpm add @yourusername/accent-theme
+pnpm add @razzusharma/accent-theme
 ```
 
 ### Basic Usage
 
 ```tsx
-import { AccentThemeProvider, useAccentColor, AccentColorPicker } from '@yourusername/accent-theme';
+import { AccentThemeProvider, useAccentColor, AccentColorPicker } from '@razzusharma/accent-theme';
 
 // Wrap your app
 function App() {
@@ -186,13 +186,13 @@ npm version major   # 1.0.0 → 2.0.0
 npm whoami
 
 # View package info
-npm view @yourusername/accent-theme
+npm view @razzusharma/accent-theme
 
 # Unpublish (within 24 hours)
-npm unpublish @yourusername/accent-theme --force
+npm unpublish @razzusharma/accent-theme --force
 
 # Deprecate version
-npm deprecate @yourusername/accent-theme@1.0.0 "Use 1.0.1 instead"
+npm deprecate @razzusharma/accent-theme@1.0.0 "Use 1.0.1 instead"
 
 # Check for vulnerabilities
 npm audit

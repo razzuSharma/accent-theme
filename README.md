@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-# @razzu/accent-theme
-=======
 # @razzusharma/accent-theme
->>>>>>> a4f8ab5 (updating readme)
 
 A React hook and provider for dynamic accent color theming. Perfect for adding customizable color themes to your React applications.
 
@@ -19,20 +15,11 @@ A React hook and provider for dynamic accent color theming. Perfect for adding c
 ## Installation
 
 ```bash
-<<<<<<< HEAD
-npm install @razzu/accent-theme
-# or
-yarn add @razzu/accent-theme
-# or
-pnpm add @razzu/accent-theme
-=======
 npm install @razzusharma/accent-theme
 # or
 yarn add @razzusharma/accent-theme
 # or
 pnpm add @razzusharma/accent-theme
-
->>>>>>> a4f8ab5 (updating readme)
 ```
 
 ## Quick Start
@@ -40,12 +27,8 @@ pnpm add @razzusharma/accent-theme
 ### 1. Wrap your app with the provider
 
 ```tsx
-<<<<<<< HEAD
-import { AccentThemeProvider } from '@razzu/accent-theme';
-
-=======
 import { AccentThemeProvider } from '@razzusharma/accent-theme';
->>>>>>> a4f8ab5 (updating readme)
+
 function App() {
   return (
     <AccentThemeProvider>
@@ -53,17 +36,12 @@ function App() {
     </AccentThemeProvider>
   );
 }
-
 ```
 
 ### 2. Use the hook in your components
 
 ```tsx
-<<<<<<< HEAD
-import { useAccentTheme, useAccentColor } from '@razzu/accent-theme';
-=======
 import { useAccentTheme, useAccentColor } from '@razzusharma/accent-theme';
->>>>>>> a4f8ab5 (updating readme)
 
 function MyComponent() {
   const { accentColor, setAccentColor } = useAccentTheme();
@@ -78,17 +56,12 @@ function MyComponent() {
     </div>
   );
 }
-
 ```
 
 ### 3. Use the built-in color picker
 
 ```tsx
-<<<<<<< HEAD
-import { AccentColorPicker } from '@razzu/accent-theme';
-=======
 import { AccentColorPicker } from '@razzusharma/accent-theme';
->>>>>>> a4f8ab5 (updating readme)
 
 function Settings() {
   return (
@@ -98,7 +71,6 @@ function Settings() {
     </div>
   );
 }
-
 ```
 
 ## Configuration
@@ -115,11 +87,7 @@ function Settings() {
 ### Custom Colors
 
 ```tsx
-<<<<<<< HEAD
-import { AccentThemeProvider } from '@razzu/accent-theme';
-=======
 import { AccentThemeProvider } from '@razzusharma/accent-theme';
->>>>>>> a4f8ab5 (updating readme)
 
 const customColors = {
   coral: {
@@ -142,7 +110,6 @@ function App() {
     </AccentThemeProvider>
   );
 }
-
 ```
 
 ## CSS Variables
@@ -231,8 +198,4 @@ module.exports = {
 
 ## License
 
-<<<<<<< HEAD
-MIT © razzu
-=======
 MIT © razzusharma
->>>>>>> a4f8ab5 (updating readme)

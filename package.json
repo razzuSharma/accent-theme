@@ -1,10 +1,33 @@
 {
   "name": "@razzusharma/accent-theme",
-  "version": "1.0.2",
-  "description": "Dynamic accent color theming for React apps",
+  "version": "2.0.0",
+  "description": "Zero-config dynamic accent color theming for React apps - truly plug and play!",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.mjs"
+      },
+      "require": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      }
+    },
+    "./tailwind": {
+      "import": {
+        "types": "./dist/tailwind.d.ts",
+        "default": "./dist/tailwind.mjs"
+      },
+      "require": {
+        "types": "./dist/tailwind.d.ts",
+        "default": "./dist/tailwind.js"
+      }
+    },
+    "./styles.css": "./dist/styles.css"
+  },
   "files": [
     "dist"
   ],
@@ -13,7 +36,8 @@
     "dev": "tsup --watch",
     "lint": "eslint src --ext .ts,.tsx",
     "typecheck": "tsc --noEmit",
-    "clean": "rm -rf dist"
+    "clean": "rm -rf dist",
+    "prepublishOnly": "npm run build"
   },
   "keywords": [
     "react",
@@ -22,7 +46,10 @@
     "colors",
     "theming",
     "tailwind",
-    "css-variables"
+    "css-variables",
+    "shadcn",
+    "zero-config",
+    "plug-and-play"
   ],
   "author": "Raju Sharma Dahal <razzu236@gmail.com>",
   "license": "MIT",

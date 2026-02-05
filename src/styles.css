@@ -1,0 +1,75 @@
+/**
+ * Accent Theme - Base Styles
+ * 
+ * Import this file in your CSS if you prefer not to use the injectCSS prop:
+ * 
+ * @import '@razzusharma/accent-theme/styles.css';
+ * 
+ * Or in your JS/TS:
+ * import '@razzusharma/accent-theme/styles.css';
+ */
+
+:root {
+  /* Default accent color (teal) */
+  --primary: 174 72% 35%;
+  --primary-foreground: 210 40% 98%;
+  --accent: 174 72% 45%;
+  --ring: 174 72% 45%;
+  
+  /* Aliases for convenience */
+  --accent-color: 174 72% 35%;
+  --accent-light: 174 72% 45%;
+  --accent-dark: 174 72% 25%;
+}
+
+/* Dark mode adjustments */
+.dark,
+[data-theme="dark"],
+[data-mode="dark"] {
+  --primary: 174 72% 45%;
+  --primary-foreground: 210 40% 98%;
+  --accent: 174 72% 55%;
+  --ring: 174 72% 55%;
+  
+  --accent-color: 174 72% 45%;
+  --accent-light: 174 72% 55%;
+  --accent-dark: 174 72% 35%;
+}
+
+/* Utility classes that work without Tailwind */
+.accent-bg {
+  background-color: hsl(var(--accent));
+}
+
+.accent-bg-primary {
+  background-color: hsl(var(--primary));
+}
+
+.accent-text {
+  color: hsl(var(--accent));
+}
+
+.accent-text-primary {
+  color: hsl(var(--primary));
+}
+
+.accent-border {
+  border-color: hsl(var(--accent));
+}
+
+.accent-ring:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px hsl(var(--ring));
+}
+
+/* Animation for color transitions */
+.accent-transition {
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+/* Reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  .accent-transition {
+    transition: none;
+  }
+}

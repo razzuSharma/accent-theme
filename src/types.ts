@@ -24,6 +24,7 @@ export interface AccentThemeContextType {
   accentColor: AccentColor;
   setAccentColor: (color: AccentColor) => void;
   accentConfig: AccentColorConfig;
+  colors: Record<string, AccentColorConfig>;
   mounted: boolean;
   defaultColor: AccentColor;
   resetToDefault: () => void;
@@ -54,6 +55,8 @@ export interface AccentColorPickerProps extends BaseComponentProps {
   variant?: "dropdown" | "inline" | "menu";
   /** Number of columns for inline variant */
   columns?: number;
+  /** Menu alignment (for menu variant) */
+  align?: "start" | "center" | "end";
   /** Callback when color changes */
   onChange?: (color: AccentColor) => void;
   /** Label text for dropdown trigger */

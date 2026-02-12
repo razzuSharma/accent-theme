@@ -5,6 +5,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.0.2] - 2026-02-12
+
+### 🐛 Fixes
+
+- Fixed `AccentColorPicker` dropdown behavior inside forms by ensuring internal controls use `type="button"` (prevents accidental form submit).
+- Fixed color source usage across picker components to honor provider colors (including `customColors`) instead of hardcoded defaults.
+- Restyled `AccentColorPicker` dropdown to a dark glass-style panel with header, swatch grid, and current-color footer.
+
 ## [2.0.0] - 2026-02-05
 
 ### ✨ New Features
@@ -59,3 +67,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - TypeScript definitions
 
 [2.0.0]: https://github.com/razzuSharma/accent-theme/compare/v1.0.2...v2.0.0
+[2.0.2]: https://github.com/razzuSharma/accent-theme/compare/v2.0.1...v2.0.2

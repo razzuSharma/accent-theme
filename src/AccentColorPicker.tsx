@@ -29,9 +29,21 @@ const gapClasses = {
   lg: "gap-3",
 };
 
+const sizePixels = {
+  sm: 24,
+  md: 32,
+  lg: 40,
+};
+
+const gapPixels = {
+  sm: 4,
+  md: 8,
+  lg: 12,
+};
+
 // Checkmark icon component
-const CheckmarkIcon = ({ className = "" }: { className?: string }) => (
-  <svg className={className} viewBox="0 0 20 20" fill="currentColor">
+const CheckmarkIcon = ({ className = "", style }: { className?: string; style?: React.CSSProperties }): React.JSX.Element => (
+  <svg className={className} style={style} viewBox="0 0 20 20" fill="currentColor">
     <path
       fillRule="evenodd"
       d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
@@ -41,14 +53,14 @@ const CheckmarkIcon = ({ className = "" }: { className?: string }) => (
 );
 
 // Chevron icon
-const ChevronIcon = ({ className = "" }: { className?: string }) => (
+const ChevronIcon = ({ className = "" }: { className?: string }): React.JSX.Element => (
   <svg className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor">
     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
   </svg>
 );
 
 // Palette icon
-const PaletteIcon = ({ className = "" }: { className?: string }) => (
+const PaletteIcon = ({ className = "" }: { className?: string }): React.JSX.Element => (
   <svg className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor">
     <path
       strokeLinecap="round"
@@ -63,7 +75,7 @@ const PaletteIcon = ({ className = "" }: { className?: string }) => (
 );
 
 // Reset icon
-const ResetIcon = ({ className = "" }: { className?: string }) => (
+const ResetIcon = ({ className = "" }: { className?: string }): React.JSX.Element => (
   <svg className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor">
     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
   </svg>
@@ -77,7 +89,7 @@ export function AccentColorSwatch({
   size = "md",
   className = "",
   showCheckmark = true,
-}: AccentColorSwatchProps) {
+}: AccentColorSwatchProps): React.JSX.Element | null {
   const { colors } = useAccentTheme();
   const config = colors[color] || defaultAccentColors[color];
   if (!config) return null;
@@ -94,14 +106,35 @@ export function AccentColorSwatch({
       ${className}
     `,
     style: {
+      width: `${sizePixels[size]}px`,
+      height: `${sizePixels[size]}px`,
+      borderRadius: "9999px",
+      position: "relative",
+      display: "inline-flex",
+      alignItems: "center",
+      justifyContent: "center",
+      flexShrink: 0,
+      border: "none",
+      padding: 0,
+      cursor: "pointer",
       background: `hsl(${config.primary})`,
       ['--tw-ring-color' as string]: `hsl(${config.light})`,
+      boxShadow: isSelected ? `0 0 0 2px #fff, 0 0 0 4px hsl(${config.light})` : undefined,
     },
     title: config.name,
     "aria-label": `Select ${config.name} theme`,
     "aria-pressed": isSelected,
   }, isSelected && showCheckmark && React.createElement(CheckmarkIcon, {
-    className: "absolute inset-0 w-full h-full p-1.5 text-white drop-shadow-md"
+    className: "absolute inset-0 w-full h-full p-1.5 text-white drop-shadow-md",
+    style: {
+      position: "absolute",
+      inset: 0,
+      width: "100%",
+      height: "100%",
+      padding: "6px",
+      color: "#fff",
+      pointerEvents: "none",
+    }
   }));
 }
 
@@ -115,7 +148,7 @@ export function AccentColorPicker({
   onChange,
   label = "Theme",
   showColorName = true,
-}: AccentColorPickerProps) {
+}: AccentColorPickerProps): React.JSX.Element {
   const { accentColor, setAccentColor, mounted, colors } = useAccentTheme();
   const { primary } = useAccentColor();
   const [isOpen, setIsOpen] = useState(false);
@@ -156,7 +189,11 @@ export function AccentColorPicker({
   if (variant === "inline") {
     return React.createElement("div", {
       className: `grid ${gapClasses.md} ${className}`,
-      style: { gridTemplateColumns: `repeat(${columns}, minmax(0, 1fr))` }
+      style: {
+        display: "grid",
+        gap: `${gapPixels.md}px`,
+        gridTemplateColumns: `repeat(${columns}, minmax(0, 1fr))`
+      }
     }, Object.entries(colors).map(([color]) => {
       const isSelected = accentColor === color;
       return React.createElement(AccentColorSwatch, {
@@ -183,7 +220,11 @@ export function AccentColorPicker({
   // Dropdown variant (default)
   return React.createElement("div", { 
     ref: dropdownRef,
-    className: `relative inline-block ${className}` 
+    className: `relative inline-block ${className}`,
+    style: {
+      position: "relative",
+      display: "inline-block",
+    }
   },
     React.createElement("button", {
       type: "button",
@@ -228,11 +269,30 @@ export function AccentColorPicker({
           border border-slate-600/40
           shadow-2xl shadow-slate-950/50 backdrop-blur-xl
         `,
-        role: "listbox"
+        role: "listbox",
+        style: {
+          position: "absolute",
+          right: 0,
+          marginTop: "12px",
+          padding: "16px",
+          borderRadius: "16px",
+          zIndex: 50,
+          minWidth: "290px",
+          background: "linear-gradient(to bottom, rgba(30,41,59,0.95), rgba(15,23,42,0.95))",
+          border: "1px solid rgba(71,85,105,0.4)",
+          boxShadow: "0 24px 48px rgba(2,6,23,0.5)",
+          backdropFilter: "blur(16px)",
+        }
       }, [
         React.createElement("div", {
           key: "header",
-          className: "flex items-start gap-3 mb-3"
+          className: "flex items-start gap-3 mb-3",
+          style: {
+            display: "flex",
+            alignItems: "flex-start",
+            gap: "12px",
+            marginBottom: "12px",
+          }
         }, [
           React.createElement("div", {
             key: "icon-wrap",
@@ -243,17 +303,36 @@ export function AccentColorPicker({
           React.createElement("div", { key: "titles" }, [
             React.createElement("p", {
               key: "title",
-              className: "text-[1.15rem] font-semibold text-slate-100 leading-5"
+              className: "text-[1.15rem] font-semibold text-slate-100 leading-5",
+              style: {
+                margin: 0,
+                fontSize: "1.15rem",
+                lineHeight: 1.25,
+                fontWeight: 600,
+                color: "#f1f5f9",
+              }
             }, "Theme Color"),
             React.createElement("p", {
               key: "subtitle",
-              className: "text-sm text-slate-300 mt-1"
+              className: "text-sm text-slate-300 mt-1",
+              style: {
+                margin: "4px 0 0",
+                fontSize: "0.875rem",
+                color: "#cbd5e1",
+              }
             }, "Choose your preferred accent color")
           ])
         ]),
         React.createElement("div", {
           key: "grid",
-          className: "grid grid-cols-4 gap-3 border-t border-white/10 pt-4"
+          className: "grid grid-cols-4 gap-3 border-t border-white/10 pt-4",
+          style: {
+            display: "grid",
+            gridTemplateColumns: "repeat(4, minmax(0, 1fr))",
+            gap: "12px",
+            borderTop: "1px solid rgba(255,255,255,0.1)",
+            paddingTop: "16px",
+          }
         }, Object.entries(colors).map(([color, config]) => {
           const isSelected = accentColor === color;
           return React.createElement("button", {
@@ -267,22 +346,54 @@ export function AccentColorPicker({
               ${isSelected ? "ring-2 ring-white/70 scale-[1.03]" : "ring-1 ring-white/10"}
             `,
             style: {
+              width: "48px",
+              height: "48px",
+              borderRadius: "12px",
+              border: "none",
+              cursor: "pointer",
+              position: "relative",
               background: `hsl(${config.primary})`,
+              boxShadow: isSelected
+                ? "0 0 0 2px rgba(255,255,255,0.7)"
+                : "0 0 0 1px rgba(255,255,255,0.1)",
             },
             title: config.name,
             role: "option",
             "aria-selected": isSelected
           }, isSelected && React.createElement(CheckmarkIcon, {
-            className: "absolute inset-0 w-full h-full p-3 text-white drop-shadow-md"
+            className: "absolute inset-0 w-full h-full p-3 text-white drop-shadow-md",
+            style: {
+              position: "absolute",
+              inset: 0,
+              width: "100%",
+              height: "100%",
+              padding: "12px",
+              color: "#fff",
+              pointerEvents: "none",
+            }
           }));
         })),
         React.createElement("div", {
           key: "footer",
-          className: "mt-4 pt-4 border-t border-white/10 flex items-center justify-between gap-3"
+          className: "mt-4 pt-4 border-t border-white/10 flex items-center justify-between gap-3",
+          style: {
+            marginTop: "16px",
+            paddingTop: "16px",
+            borderTop: "1px solid rgba(255,255,255,0.1)",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+            gap: "12px",
+          }
         }, [
           React.createElement("p", {
             key: "current-text",
-            className: "text-[1.05rem] text-slate-200"
+            className: "text-[1.05rem] text-slate-200",
+            style: {
+              margin: 0,
+              fontSize: "1.05rem",
+              color: "#e2e8f0",
+            }
           }, `Current: ${colors[accentColor]?.name || accentColor}`),
           React.createElement("span", {
             key: "current-pill",
@@ -303,7 +414,7 @@ export function AccentColorSwatches({
   onChange,
   showCheckmark = true,
   gap = "md",
-}: AccentColorSwatchesProps) {
+}: AccentColorSwatchesProps): React.JSX.Element {
   const { accentColor, setAccentColor, mounted, colors } = useAccentTheme();
 
   const handleColorChange = (color: AccentColor) => {
@@ -342,7 +453,7 @@ export function AccentColorMenu({
   onChange,
   align = "end",
   label = "Theme",
-}: AccentColorMenuProps) {
+}: AccentColorMenuProps): React.JSX.Element {
   const { accentColor, setAccentColor, mounted, colors } = useAccentTheme();
   const { primary } = useAccentColor();
   const [isOpen, setIsOpen] = useState(false);
@@ -376,13 +487,22 @@ export function AccentColorMenu({
 
   if (!mounted) {
     return React.createElement("div", {
-      className: `animate-pulse bg-gray-200 dark:bg-gray-700 rounded-lg w-24 h-9 ${className}`
+      className: `animate-pulse bg-gray-200 dark:bg-gray-700 rounded-lg w-24 h-9 ${className}`,
+      style: {
+        width: "96px",
+        height: "36px",
+        borderRadius: "8px",
+      }
     });
   }
 
   return React.createElement("div", { 
     ref: menuRef,
-    className: `relative inline-block ${className}` 
+    className: `relative inline-block ${className}`,
+    style: {
+      position: "relative",
+      display: "inline-block",
+    }
   },
     React.createElement("button", {
       type: "button",
@@ -420,7 +540,22 @@ export function AccentColorMenu({
         border border-gray-200 dark:border-gray-700 
         z-50 min-w-[160px]
         ${alignClasses[align]}
-      `
+      `,
+      style: {
+        position: "absolute",
+        top: "100%",
+        marginTop: "8px",
+        padding: "8px",
+        background: "#ffffff",
+        borderRadius: "8px",
+        boxShadow: "0 12px 30px rgba(15,23,42,0.18)",
+        border: "1px solid #e5e7eb",
+        zIndex: 50,
+        minWidth: "160px",
+        left: align === "start" ? 0 : align === "center" ? "50%" : undefined,
+        right: align === "end" ? 0 : undefined,
+        transform: align === "center" ? "translateX(-50%)" : undefined,
+      }
     }, Object.entries(colors).map(([color, config]) => {
       const isSelected = accentColor === color;
       return React.createElement("button", {
@@ -432,19 +567,47 @@ export function AccentColorMenu({
           transition-colors
           ${isSelected ? "bg-gray-100 dark:bg-gray-700" : "hover:bg-gray-50 dark:hover:bg-gray-700/50"}
         `,
+        style: {
+          width: "100%",
+          display: "flex",
+          alignItems: "center",
+          gap: "12px",
+          padding: "8px 12px",
+          borderRadius: "6px",
+          border: "none",
+          cursor: "pointer",
+          background: isSelected ? "#f3f4f6" : "transparent",
+        },
       }, [
         React.createElement("div", {
           key: "dot",
           className: `w-4 h-4 rounded-full flex-shrink-0`,
-          style: { background: `hsl(${config.primary})` }
+          style: {
+            width: "16px",
+            height: "16px",
+            borderRadius: "9999px",
+            flexShrink: 0,
+            background: `hsl(${config.primary})`
+          }
         }),
         React.createElement("span", {
           key: "name",
-          className: `text-sm ${isSelected ? "font-medium text-gray-900 dark:text-gray-100" : "text-gray-700 dark:text-gray-300"}`
+          className: `text-sm ${isSelected ? "font-medium text-gray-900 dark:text-gray-100" : "text-gray-700 dark:text-gray-300"}`,
+          style: {
+            fontSize: "14px",
+            fontWeight: isSelected ? 500 : 400,
+            color: isSelected ? "#111827" : "#374151",
+          }
         }, config.name),
         isSelected && React.createElement(CheckmarkIcon, {
           key: "check",
-          className: "w-4 h-4 ml-auto text-gray-500 dark:text-gray-400"
+          className: "w-4 h-4 ml-auto text-gray-500 dark:text-gray-400",
+          style: {
+            width: "16px",
+            height: "16px",
+            marginLeft: "auto",
+            color: "#6b7280",
+          }
         })
       ]);
     }))
@@ -458,7 +621,7 @@ export function AccentColorButton({
   onClick,
   showLabel = false,
   buttonVariant = "default",
-}: AccentColorButtonProps) {
+}: AccentColorButtonProps): React.JSX.Element {
   const { accentColor, mounted, colors } = useAccentTheme();
   const { primary } = useAccentColor();
   const colorConfig = colors[accentColor] || defaultAccentColors[accentColor];
@@ -514,7 +677,7 @@ export function AccentThemeReset({
   text = "Reset",
   onReset,
   variant = "button",
-}: AccentThemeResetProps) {
+}: AccentThemeResetProps): React.JSX.Element {
   const { defaultColor, resetToDefault, mounted, accentColor } = useAccentTheme();
   const { primary } = useAccentColor();
   
@@ -588,7 +751,7 @@ export function CurrentAccentIndicator({
   size = "md",
   showName = false,
   pulseOnChange = false,
-}: CurrentAccentIndicatorProps) {
+}: CurrentAccentIndicatorProps): React.JSX.Element {
   const { accentColor, mounted, colors } = useAccentTheme();
   const { primary } = useAccentColor();
   const config = colors[accentColor] || defaultAccentColors[accentColor];
@@ -646,7 +809,7 @@ export function AccentColorGrid({
   onChange,
   showLabels = false,
   gap = "md",
-}: AccentColorGridProps) {
+}: AccentColorGridProps): React.JSX.Element {
   const { accentColor, setAccentColor, mounted, colors } = useAccentTheme();
 
   const handleColorChange = (color: AccentColor) => {

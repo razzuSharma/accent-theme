@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Fixed `AccentColorPicker` dropdown behavior inside forms by ensuring internal controls use `type="button"` (prevents accidental form submit).
 - Fixed color source usage across picker components to honor provider colors (including `customColors`) instead of hardcoded defaults.
 - Restyled `AccentColorPicker` dropdown to a dark glass-style panel with header, swatch grid, and current-color footer.
+- Added reusable `AccentThemeWidget` component for a drop-in floating theme panel UI.
 
 ## [2.0.0] - 2026-02-05
 

@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import type * as React from 'react';
 
 export type AccentColor = 
   | "teal" 
@@ -31,7 +31,7 @@ export interface AccentThemeContextType {
 }
 
 export interface AccentThemeProviderProps {
-  children: ReactNode;
+  children: React.ReactNode;
   defaultColor?: AccentColor;
   customColors?: Record<string, AccentColorConfig>;
   storageKey?: string;
@@ -126,4 +126,25 @@ export interface AccentColorSwatchProps {
   size?: ComponentSize;
   className?: string;
   showCheckmark?: boolean;
+}
+
+export interface AccentThemeWidgetProps {
+  /** Additional classes for the widget wrapper */
+  className?: string;
+  /** Panel title */
+  title?: string;
+  /** Panel subtitle */
+  subtitle?: string;
+  /** Where to place the widget when not inline */
+  position?: "top-right" | "top-left" | "bottom-right" | "bottom-left" | "inline";
+  /** Spacing from viewport edges in px */
+  offset?: number;
+  /** Initial open state */
+  defaultOpen?: boolean;
+  /** Show an open/close trigger button */
+  collapsible?: boolean;
+  /** Show current color footer */
+  showCurrent?: boolean;
+  /** Callback when color changes */
+  onChange?: (color: AccentColor) => void;
 }

@@ -72,7 +72,7 @@ export function AccentThemeProvider({
   cssVariablePrefix = "",
   injectCSS = true,
   enableDarkMode = true,
-}: AccentThemeProviderProps) {
+}: AccentThemeProviderProps): React.JSX.Element {
   const colors = useMemo(() => mergeColors(defaultAccentColors, customColors), [customColors]);
   
   const [accentColor, setAccentColorState] = useState<AccentColor>(defaultColor);
@@ -186,7 +186,7 @@ export function AccentThemeProvider({
   );
 }
 
-export function useAccentTheme() {
+export function useAccentTheme(): AccentThemeContextType {
   return useContext(AccentThemeContext);
 }
 

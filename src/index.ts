@@ -17,6 +17,7 @@ export {
   CurrentAccentIndicator,
   AccentColorGrid,
 } from './AccentColorPicker';
+export { AccentThemeWidget } from './AccentThemeWidget';
 
 // Color data
 export { defaultAccentColors, mergeColors } from './colors';
@@ -40,6 +41,7 @@ export type {
   CurrentAccentIndicatorProps,
   AccentColorGridProps,
   AccentColorSwatchProps,
+  AccentThemeWidgetProps,
 } from './types';
 
 // Utilities
@@ -55,4 +57,4 @@ export {
 } from './utils';
 
 // Version
-export const VERSION = '2.0.0';
+export const VERSION = '2.0.2';

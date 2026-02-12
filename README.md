@@ -23,6 +23,25 @@ yarn add @razzusharma/accent-theme
 pnpm add @razzusharma/accent-theme
 ```
 
+## Troubleshooting
+
+### Type error: `ReactNode is not assignable` from a local path
+
+If you are testing with `npm link` or a direct folder install, TypeScript can load two different React type trees.
+Use a packed tarball install instead (this matches real npm usage):
+
+```bash
+# in accent-theme repo
+npm run build
+npm pack --pack-destination /tmp
+
+# in your app repo
+npm uninstall @razzusharma/accent-theme
+npm install /tmp/razzusharma-accent-theme-2.0.2.tgz
+```
+
+Then restart your TS server/editor and dev server.
+
 ## Quick Start (It Just Works!)
 
 ### 1. Wrap your app with the provider
@@ -82,6 +101,25 @@ import { AccentColorPicker } from '@razzusharma/accent-theme';
 - `showColorName`: Show color name in dropdown
 - `onChange`: Callback when color changes
 - `className`: Custom classes
+
+### AccentThemeWidget
+
+Floating glass-style theme panel (like your screenshot), ready to reuse:
+
+```tsx
+import { AccentThemeWidget } from '@razzusharma/accent-theme';
+
+<AccentThemeWidget position="top-right" />
+```
+
+**Props:**
+- `position`: `"top-right" | "top-left" | "bottom-right" | "bottom-left" | "inline"`
+- `offset`: Number (viewport edge spacing in px)
+- `collapsible`: Show compact trigger button
+- `defaultOpen`: Initial open state
+- `showCurrent`: Show current color footer
+- `title` / `subtitle`: Panel text
+- `onChange`: Callback when color changes
 
 ### AccentColorSwatches
 
